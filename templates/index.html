@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block container %}
+
+  <main class="container mt-3">
+    <!-- HERO -->
+    <section class="jumbotron text-center mt-4" style="background: url('/static/img/header_bkgr.jpg'); background-position: center center; height: 300px;">
+      <h1 class="display-4">Популярные туры</h1>
+      <p class="lead">Для тех, кого отвлекают дома</p>
+      <p class="mt-5 w-50 mx-auto">Лучшие направления, где никто не будет вам мешать сидеть на берегу и изучать программирование, дизайн, разработку игр и управление продуктами</p>
+    </section>
+    <!-- CARDS -->
+    <div class="row mt-5">
+      {% for tour_id, tour in tours.items() %}
+      <div class="col-4">
+        <div class="card mb-4">
+          <div class="embed-responsive embed-responsive-16by9">
+             <img class="card-img-top embed-responsive-item" src="{{ tour.picture }}" alt="" />
+          </div>          
+          <div class="card-body">
+            <h2 class="h5 card-title">{{ tour.title }}</h2>
+            <p class="card-text">{{ tour.country }}, {{ tour.nights }} ночей, {{ tour.stars }}*</p>
+            <p class="card-text">Вылет {{ departures[tour.departure] }}</p>
+            <p class="card-text">Цена: {{ tour.price }} руб.</p>
+            <a href="/tours/{{ tour_id }}/" class="btn btn-sm btn-primary">Подробнее</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </main>
+
+{% endblock %}
